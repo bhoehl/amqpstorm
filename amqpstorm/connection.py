@@ -64,7 +64,8 @@ class Connection(Stateful):
         self._io = IO(self.parameters, exceptions=self._exceptions,
                       on_read=self._read_buffer)
         self._channel0 = Channel0(self)
-        self._channels = collections.OrderedDict()
+        self._last_channel_id = 0
+        self._channels = {}
         self.heartbeat = Heartbeat(self.parameters['heartbeat'],
                                    self._channel0.send_heartbeat)
         if not kwargs.get('lazy', False):
@@ -267,23 +268,21 @@ class Connection(Stateful):
 
         :rtype: int
         """
-        if not self._channels:
-            return 1
+        if self._last_channel_id == self.max_allowed_channels:
+            self._last_channel_id = 0
 
-        last_channel_id = int(next(reversed(self._channels)))
-        next_channel_id = last_channel_id + 1
-        if (next_channel_id < self.max_allowed_channels and
-           next_channel_id not in self._channels):
-            return next_channel_id
-
-        for index in compatibility.RANGE(1, self.max_allowed_channels):
+        for index in range(self._last_channel_id + 1, self.max_allowed_channels):
             if index in self._channels:
                 continue
+            self._last_channel_id = index
             return index
 
+        if self._last_channel_id != 0:
+            self._last_channel_id = 0
+            return self._get_next_available_channel_id()
+            
         raise AMQPConnectionError(
-            'reached the maximum number of channels %d' %
-            self.max_allowed_channels)
+            'reached the maximum number of channels %d' % self.max_allowed_channels)
 
     def _handle_amqp_frame(self, data_in):
         """Unmarshal a single AMQP frame and return the result.
