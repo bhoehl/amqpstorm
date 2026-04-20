@@ -5,8 +5,8 @@ import logging
 import threading
 import time
 
-from pamqp import specification
-from pamqp.header import ContentHeader
+from amqpstorm.pamqp_compat import ContentHeader
+from amqpstorm.pamqp_compat import specification
 
 from amqpstorm import compatibility
 from amqpstorm.base import BaseChannel
@@ -422,13 +422,16 @@ class Channel(BaseChannel):
         :return:
         """
         reply_text = try_utf8_decode(frame_in.reply_text)
+        # pamqp 3+ may leave routing_key/exchange as None when omitted; v2 used ''.
+        routing_key = frame_in.routing_key or ''
+        exchange = frame_in.exchange or ''
         message = (
             "Message not delivered: %s (%s) to queue '%s' from exchange '%s'" %
             (
                 reply_text,
                 frame_in.reply_code,
-                frame_in.routing_key,
-                frame_in.exchange
+                routing_key,
+                exchange
             )
         )
         exception = AMQPMessageError(message,

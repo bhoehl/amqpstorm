@@ -8,11 +8,29 @@ on:
     - cron: '0 13 * * 1'
 
 jobs:
-  build:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.11.13'
+      - name: Install dependencies
+        run: |
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+          if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
+      - name: Lint with flake8
+        run: flake8 .
+
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
         python-version: [3.11.13, 3.12.10, 3.13.7]
+        # Latest patch per major; pamqp 5 not on PyPI yet — add when released.
+        pamqp-version: ['2.3.0', '3.3.0', '4.0.0']
+    name: test (py ${{ matrix.python-version }}, pamqp ${{ matrix.pamqp-version }})
     steps:
       - uses: actions/checkout@v5
       - name: Set up Python ${{ matrix.python-version }}
@@ -23,6 +41,7 @@ jobs:
         run: |
           if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
           if [ -f test-requirements.txt ]; then pip install -r test-requirements.txt; fi
+          pip install "pamqp==${{ matrix.pamqp-version }}"
       - name: Start RabbitMQ
         run: |
           docker build -t amqpstormdev ./docker/
@@ -37,9 +56,5 @@ jobs:
           nc -zv rmq.eandersson.net 5672  || exit 1
           nc -zv rmq.eandersson.net 15671 || exit 1
           nc -zv rmq.eandersson.net 15672 || exit 1
-      - name: Lint with flake8
-        run: |
-          flake8 .
       - name: Test with pytest
-        run: |
-          pytest
+        run: pytest

@@ -5,10 +5,10 @@ import threading
 import time
 from time import sleep
 
-from pamqp import exceptions as pamqp_exception
-from pamqp import frame as pamqp_frame
-from pamqp import header as pamqp_header
-from pamqp import specification
+from amqpstorm.pamqp_compat import exceptions as pamqp_exception
+from amqpstorm.pamqp_compat import frame as pamqp_frame
+from amqpstorm.pamqp_compat import header as pamqp_header
+from amqpstorm.pamqp_compat import specification
 
 from amqpstorm import compatibility
 from amqpstorm.base import IDLE_WAIT

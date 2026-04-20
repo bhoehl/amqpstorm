@@ -1,15 +1,16 @@
 import platform
 
-from pamqp.heartbeat import Heartbeat
-from pamqp.specification import Connection
-
 import amqpstorm
 from amqpstorm import AMQPConnectionError
 from amqpstorm.base import MAX_CHANNELS
 from amqpstorm.base import MAX_FRAME_SIZE
 from amqpstorm.channel0 import Channel0
+from amqpstorm.pamqp_compat import Heartbeat
+from amqpstorm.pamqp_compat import specification
 from amqpstorm.tests.utility import FakeConnection
 from amqpstorm.tests.utility import TestFramework
+
+Connection = specification.Connection
 
 
 class Channel0Tests(TestFramework):

@@ -1,4 +1,4 @@
-from pamqp import specification
+from amqpstorm.pamqp_compat import specification
 
 from amqpstorm.channel import Channel
 from amqpstorm.tests.utility import FakeConnection

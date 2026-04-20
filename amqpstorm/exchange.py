@@ -2,13 +2,14 @@
 
 import logging
 
-from pamqp.specification import Exchange as pamqp_exchange
-
 from amqpstorm import compatibility
 from amqpstorm.base import Handler
 from amqpstorm.exception import AMQPInvalidArgument
+from amqpstorm.pamqp_compat import specification
 
 LOGGER = logging.getLogger(__name__)
+
+pamqp_exchange = specification.Exchange
 
 
 class Exchange(Handler):

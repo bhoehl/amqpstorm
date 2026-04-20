@@ -1,7 +1,7 @@
 import collections
 
 import mock
-from pamqp import specification
+from amqpstorm.pamqp_compat import specification
 
 import amqpstorm
 from amqpstorm import AMQPChannelError

@@ -2,7 +2,7 @@
 
 import logging
 
-from pamqp import specification
+from amqpstorm.pamqp_compat import specification
 
 from amqpstorm.base import Handler
 

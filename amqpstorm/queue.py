@@ -2,13 +2,14 @@
 
 import logging
 
-from pamqp.specification import Queue as pamqp_queue
-
 from amqpstorm import compatibility
 from amqpstorm.base import Handler
 from amqpstorm.exception import AMQPInvalidArgument
+from amqpstorm.pamqp_compat import specification
 
 LOGGER = logging.getLogger(__name__)
+
+pamqp_queue = specification.Queue
 
 
 class Queue(Handler):

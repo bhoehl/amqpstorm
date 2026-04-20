@@ -1,9 +1,10 @@
-from pamqp.specification import Exchange as pamqp_exchange
-
 from amqpstorm.channel import Channel
 from amqpstorm.channel import Exchange
+from amqpstorm.pamqp_compat import specification
 from amqpstorm.tests.utility import FakeConnection
 from amqpstorm.tests.utility import TestFramework
+
+pamqp_exchange = specification.Exchange
 
 
 class ExchangeTests(TestFramework):

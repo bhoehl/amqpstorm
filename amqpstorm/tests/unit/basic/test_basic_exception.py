@@ -1,5 +1,7 @@
-from pamqp import specification
-from pamqp.body import ContentBody
+from amqpstorm.pamqp_compat import body as pamqp_body
+from amqpstorm.pamqp_compat import specification
+
+ContentBody = pamqp_body.ContentBody
 
 from amqpstorm import Channel
 from amqpstorm import exception

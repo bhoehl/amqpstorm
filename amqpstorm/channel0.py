@@ -3,8 +3,8 @@
 import logging
 import platform
 
-from pamqp import specification
-from pamqp.heartbeat import Heartbeat
+from amqpstorm.pamqp_compat import Heartbeat
+from amqpstorm.pamqp_compat import specification
 
 from amqpstorm import __version__
 from amqpstorm.base import LOCALE

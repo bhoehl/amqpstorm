@@ -5,3 +5,7 @@
 *.class
 .idea
 __pycache__
+
+# Populated by CI / run_ci_locally.sh from the RabbitMQ Docker image
+amqpstorm/tests/resources/ssl/*
+!amqpstorm/tests/resources/ssl/.empty

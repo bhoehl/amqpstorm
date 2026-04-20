@@ -3,9 +3,12 @@ import string
 import sys
 
 import mock
-from pamqp import specification
-from pamqp.body import ContentBody
-from pamqp.header import ContentHeader
+
+from amqpstorm.pamqp_compat import ContentHeader
+from amqpstorm.pamqp_compat import body as pamqp_body
+from amqpstorm.pamqp_compat import specification
+
+ContentBody = pamqp_body.ContentBody
 
 from amqpstorm import Message
 from amqpstorm.channel import Basic

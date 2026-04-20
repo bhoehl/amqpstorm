@@ -2,9 +2,11 @@ import socket
 import threading
 
 import mock
-from pamqp import frame as pamqp_frame
-from pamqp import specification
-from pamqp.specification import Basic as spec_basic
+
+from amqpstorm.pamqp_compat import frame as pamqp_frame
+from amqpstorm.pamqp_compat import specification
+
+spec_basic = specification.Basic
 
 from amqpstorm import Channel
 from amqpstorm import Connection

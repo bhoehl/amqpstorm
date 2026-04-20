@@ -3,9 +3,9 @@
 import logging
 import math
 
-from pamqp import body as pamqp_body
-from pamqp import header as pamqp_header
-from pamqp import specification
+from amqpstorm.pamqp_compat import body as pamqp_body
+from amqpstorm.pamqp_compat import header as pamqp_header
+from amqpstorm.pamqp_compat import specification
 
 from amqpstorm import compatibility
 from amqpstorm.base import BaseMessage

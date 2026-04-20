@@ -1,7 +1,9 @@
 import mock
-from pamqp import ContentHeader
-from pamqp import specification
-from pamqp.body import ContentBody
+from amqpstorm.pamqp_compat import ContentHeader
+from amqpstorm.pamqp_compat import body as pamqp_body
+from amqpstorm.pamqp_compat import specification
+
+ContentBody = pamqp_body.ContentBody
 
 import amqpstorm
 from amqpstorm import Channel

@@ -1,6 +1,6 @@
 import collections
 import mock
-from pamqp import specification
+from amqpstorm.pamqp_compat import specification
 
 from amqpstorm import Channel
 from amqpstorm.basic import Basic
