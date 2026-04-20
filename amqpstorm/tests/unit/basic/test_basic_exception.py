@@ -1,13 +1,12 @@
-from amqpstorm.pamqp_compat import body as pamqp_body
-from amqpstorm.pamqp_compat import specification
-
-ContentBody = pamqp_body.ContentBody
-
 from amqpstorm import Channel
 from amqpstorm import exception
 from amqpstorm.basic import Basic
+from amqpstorm.pamqp_compat import body as pamqp_body
+from amqpstorm.pamqp_compat import specification
 from amqpstorm.tests.utility import FakeConnection
 from amqpstorm.tests.utility import TestFramework
+
+ContentBody = pamqp_body.ContentBody
 
 
 class BasicExceptionTests(TestFramework):

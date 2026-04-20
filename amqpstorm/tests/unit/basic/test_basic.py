@@ -4,20 +4,19 @@ import sys
 
 import mock
 
-from amqpstorm.pamqp_compat import ContentHeader
-from amqpstorm.pamqp_compat import body as pamqp_body
-from amqpstorm.pamqp_compat import specification
-
-ContentBody = pamqp_body.ContentBody
-
 from amqpstorm import Message
 from amqpstorm.channel import Basic
 from amqpstorm.channel import Channel
 from amqpstorm.compatibility import RANGE
 from amqpstorm.exception import AMQPChannelError
+from amqpstorm.pamqp_compat import ContentHeader
+from amqpstorm.pamqp_compat import body as pamqp_body
+from amqpstorm.pamqp_compat import specification
 from amqpstorm.tests.utility import FakeConnection
 from amqpstorm.tests.utility import TestFramework
 from amqpstorm.tests.utility import unittest
+
+ContentBody = pamqp_body.ContentBody
 
 
 class BasicTests(TestFramework):

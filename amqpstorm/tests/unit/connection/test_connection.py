@@ -3,18 +3,17 @@ import threading
 
 import mock
 
-from amqpstorm.pamqp_compat import frame as pamqp_frame
-from amqpstorm.pamqp_compat import specification
-
-spec_basic = specification.Basic
-
 from amqpstorm import Channel
 from amqpstorm import Connection
 from amqpstorm import compatibility
 from amqpstorm.base import MAX_CHANNELS
 from amqpstorm.exception import AMQPConnectionError
 from amqpstorm.io import IO
+from amqpstorm.pamqp_compat import frame as pamqp_frame
+from amqpstorm.pamqp_compat import specification
 from amqpstorm.tests.utility import TestFramework
+
+spec_basic = specification.Basic
 
 
 class ConnectionTests(TestFramework):

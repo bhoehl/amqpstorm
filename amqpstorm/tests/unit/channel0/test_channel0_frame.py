@@ -1,14 +1,14 @@
-from amqpstorm.pamqp_compat import Heartbeat
-from amqpstorm.pamqp_compat import specification
-
-Connection = specification.Connection
-
 import amqpstorm
+
 from amqpstorm import AMQPConnectionError
 from amqpstorm.channel0 import Channel0
+from amqpstorm.pamqp_compat import Heartbeat
+from amqpstorm.pamqp_compat import specification
 from amqpstorm.tests.utility import FakeConnection
 from amqpstorm.tests.utility import FakeFrame
 from amqpstorm.tests.utility import TestFramework
+
+Connection = specification.Connection
 
 
 class Channel0FrameTests(TestFramework):

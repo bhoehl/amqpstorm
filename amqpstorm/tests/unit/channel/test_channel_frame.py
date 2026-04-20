@@ -1,18 +1,18 @@
 import mock
-from amqpstorm.pamqp_compat import ContentHeader
-from amqpstorm.pamqp_compat import body as pamqp_body
-from amqpstorm.pamqp_compat import specification
-
-ContentBody = pamqp_body.ContentBody
 
 import amqpstorm
 from amqpstorm import Channel
 from amqpstorm.exception import AMQPChannelError
 from amqpstorm.exception import AMQPConnectionError
 from amqpstorm.exception import AMQPMessageError
+from amqpstorm.pamqp_compat import ContentHeader
+from amqpstorm.pamqp_compat import body as pamqp_body
+from amqpstorm.pamqp_compat import specification
 from amqpstorm.tests.utility import FakeConnection
 from amqpstorm.tests.utility import FakeFrame
 from amqpstorm.tests.utility import TestFramework
+
+ContentBody = pamqp_body.ContentBody
 
 
 class ChannelFrameTests(TestFramework):
